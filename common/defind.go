@@ -12,7 +12,7 @@ const (
 	//短连接id自增key
 	KeyShortLinkCreateId = "shortLink:creatId"
 	//短码id前缀
-	KeyShortLinkIdPrefix = "shortLink:shortId:"
+	KeyShortLinkShortCodePrefix = "shortLink:shortCode:"
 	//长连接code前缀
 	KeyShortLinkLongMd5Prefix = "shortLink:LongMd5:"
 )

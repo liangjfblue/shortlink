@@ -31,6 +31,7 @@ func New() *gin.Engine {
 	shortLinkV1.Use(middleware.LimitMiddleware())
 	{
 		shortLinkV1.POST("", shortlink.Shorten)
+		shortLinkV1.GET("", shortlink.Info)
 	}
 
 	return g

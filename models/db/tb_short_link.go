@@ -11,13 +11,13 @@ import (
 )
 
 type TBShortLink struct {
-	ShortId     uint64 `gorm:"column:short_id;not null;primary_key" json:"shortId" description:"短码id"`
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
-	DeletedAt   *time.Time
-	ShortCode   string `gorm:"column:short_code;not null;index:idx_short_code" json:"chipId" description:"短码"`
-	LongUrl     string `gorm:"column:long_url;null;" json:"longUrl" description:"长连接"`
-	LongLinkMd5 string `gorm:"column:long_link_md5;null;" json:"longLinkMd5" description:"长连接md5, 用于查询"`
+	ShortId     uint64     `gorm:"column:short_id;not null;primary_key" json:"shortId" description:"短码id"`
+	CreatedAt   time.Time  `json:"createdAt"`
+	UpdatedAt   time.Time  `json:"updatedAt"`
+	DeletedAt   *time.Time `json:"-"`
+	ShortCode   string     `gorm:"column:short_code;not null;index:idx_short_code"  json:"shortCode" description:"短码"`
+	LongUrl     string     `gorm:"column:long_url;null;" json:"longLink" description:"长连接"`
+	LongLinkMd5 string     `gorm:"column:long_link_md5;null;" json:"-" description:"长连接md5, 用于查询"`
 }
 
 // TableName 设置表名字

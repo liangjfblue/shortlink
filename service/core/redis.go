@@ -84,14 +84,14 @@ END:
 }
 
 func (s *redisWay) GetLongLinkByShortLink(shortCode string) (string, error) {
-	longLink, err := redis.GetString(common.KeyShortLinkIdPrefix + shortCode)
+	longLink, err := redis.GetString(common.KeyShortLinkShortCodePrefix + shortCode)
 	if err != nil {
 		tBShortLink, err := db.GetTBShortLink(map[string]interface{}{"short_code": shortCode})
 		if err != nil {
 			return "", err
 		}
 
-		if err := redis.SetEX(common.KeyShortLinkIdPrefix+shortCode, tBShortLink.LongUrl, common.AddRandExpire(common.ExpireTime)); err != nil {
+		if err := redis.SetEX(common.KeyShortLinkShortCodePrefix+shortCode, tBShortLink.LongUrl, common.AddRandExpire(common.ExpireTime)); err != nil {
 			return "", err
 		}
 

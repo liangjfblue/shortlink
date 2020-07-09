@@ -7,7 +7,6 @@
 package convert
 
 import (
-	"bytes"
 	"fmt"
 	"math"
 	"strconv"
@@ -48,10 +47,14 @@ func (b *base62Decimal) Encode(num interface{}) string {
 
 //Decode 短码转换为任意进制
 func (b *base62Decimal) Decode(str62 string) interface{} {
-	str62 = strings.TrimSpace(str62)
-	var result = 0
-	for index, char := range []byte(str62) {
-		result += bytes.IndexByte([]byte(CODE62), char) * int(math.Pow(CodeLength, float64(index)))
+	var (
+		pos    int
+		number int64
+	)
+	sum := len(str62)
+	for i := 0; i < sum; i++ {
+		pos = strings.IndexAny(CODE62, str62[i:i+1])
+		number = int64(math.Pow(62, float64(sum-i-1))*float64(pos)) + number
 	}
-	return result
+	return number
 }

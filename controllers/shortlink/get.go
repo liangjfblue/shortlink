@@ -7,6 +7,7 @@
 package shortlink
 
 import (
+	"net/http"
 	"shortlink/controllers"
 	"shortlink/service/core"
 
@@ -36,6 +37,5 @@ func Get(c *gin.Context) {
 		"longLink":  longLink,
 	}).Debug("shortCode get longLink, and redirect to longLink")
 
-	//c.Redirect(http.StatusFound, longLink)
-	result.Success(c, nil)
+	c.Redirect(http.StatusFound, longLink)
 }
