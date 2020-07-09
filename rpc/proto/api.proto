@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package proto;
+
+message GetRequest {
+    string ShortLink = 1;
+}
+
+message GetRespond {
+    int32 Code = 1;
+    string Msg = 2;
+    string LongLink = 3;
+}
+
+
+message ChangeRequest {
+    string LongLink = 1;
+}
+
+message ChangeRespond {
+    int32 Code = 1;
+    string Msg = 2;
+}
+
+service Gateway {
+    rpc Get(GetRequest) returns (GetRespond) {}
+    rpc Change(ChangeRequest) returns (ChangeRespond) {}
+}

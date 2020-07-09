@@ -1,0 +1,23 @@
+server:
+  runMode: "debug" #"debug" "release" "test"
+  port: 9099
+  rpcPort: 8088
+  network: "tcp"
+  pingTime: 3
+  pingUrl: "/v1/sd/health"
+  openIpLimit: 5 #-1:not >1:yes  openIpLimit: 5(5/s)
+
+mysql:
+  host: "root:123456@tcp(172.16.7.16:3306)/db_short_link?charset=utf8&parseTime=True&loc=Local"
+  maxIdleConn: 10
+  maxOpenConn: 20
+
+redis:
+  host: "172.16.7.16:8001,172.16.7.16:8002,172.16.7.16:8003"
+
+shortLink:
+  shortUrl: "172.16.7.16:9099/sl"
+
+log:
+  reportCaller: true
+  level: 5  #0-panic 1-fatal 2-error 3-warm 4-info 5-debug 6-trace
