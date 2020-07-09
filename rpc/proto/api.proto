@@ -2,27 +2,36 @@ syntax = "proto3";
 
 package proto;
 
-message GetRequest {
+message InfoRequest {
     string ShortLink = 1;
 }
 
-message GetRespond {
+message ShortLinkInfo {
+    int64 ShortId = 1;
+    string ShortCode = 2;
+    string LongLink = 3;
+    string CreatedAt = 4;
+    string UpdatedAt = 5;
+}
+
+message InfoRespond {
+    int32 Code = 1;
+    string Msg = 2;
+    ShortLinkInfo ShortLink = 3;
+}
+
+
+message ShortenRequest {
+    string LongLink = 1;
+}
+
+message ShortenRespond {
     int32 Code = 1;
     string Msg = 2;
     string LongLink = 3;
 }
 
-
-message ChangeRequest {
-    string LongLink = 1;
-}
-
-message ChangeRespond {
-    int32 Code = 1;
-    string Msg = 2;
-}
-
-service Gateway {
-    rpc Get(GetRequest) returns (GetRespond) {}
-    rpc Change(ChangeRequest) returns (ChangeRespond) {}
+service ShortLink {
+    rpc Info(InfoRequest) returns (InfoRespond) {}
+    rpc Shorten(ShortenRequest) returns (ShortenRespond) {}
 }

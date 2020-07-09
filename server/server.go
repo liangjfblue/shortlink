@@ -45,7 +45,7 @@ func StartRpcServer() {
 		}
 
 		s := grpc.NewServer()
-		proto.RegisterGatewayServer(s, &service.ShortLink{})
+		proto.RegisterShortLinkServer(s, &service.ShortLink{})
 
 		if err := s.Serve(lis); err != nil {
 			debug.PrintStack()
