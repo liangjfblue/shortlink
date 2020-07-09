@@ -18,6 +18,7 @@ type TBShortLink struct {
 	ShortCode   string     `gorm:"column:short_code;not null;index:idx_short_code"  json:"shortCode" description:"短码"`
 	LongUrl     string     `gorm:"column:long_url;null;" json:"longLink" description:"长连接"`
 	LongLinkMd5 string     `gorm:"column:long_link_md5;null;" json:"-" description:"长连接md5, 用于查询"`
+	Type        int8       `gorm:"column:type;null;" json:"type" description:"类型 0-系统生成 1-自定义"`
 }
 
 // TableName 设置表名字

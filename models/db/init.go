@@ -32,5 +32,4 @@ func Init() {
 
 	_DB.SingularTable(true)
 	_DB.AutoMigrate(&TBShortLink{})
-	_DB.AutoMigrate(&TBCustomizeShortLink{})
 }

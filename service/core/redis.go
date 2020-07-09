@@ -104,3 +104,25 @@ func (s *redisWay) GetLongLinkByShortLink(shortCode string) (string, error) {
 
 	return longLink, nil
 }
+
+func (s *redisWay) CreateShortLinkByCustomizeShortCode(shortCode, longLink string) (string, error) {
+	longLinkMd5 := fmt.Sprintf("%x", md5.Sum([]byte(longLink)))
+
+	//short id convert to short code
+	shortId := convert.Decode(shortCode).(int64)
+
+	//save to mysql
+	if err := db.AddTBShortLink(&db.TBShortLink{
+		ShortId:     uint64(shortId),
+		ShortCode:   shortCode,
+		LongUrl:     longLink,
+		LongLinkMd5: longLinkMd5,
+	}); err != nil {
+		return "", err
+	}
+
+	//short code make a shortlink
+	shortLink := fmt.Sprintf("%s/%s", config.Config().ShortLink.ShortUrl, shortCode)
+
+	return shortLink, nil
+}

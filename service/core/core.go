@@ -9,6 +9,7 @@ package core
 type ICore interface {
 	GetShortLinkByLongLink(string) (string, error)
 	GetLongLinkByShortLink(string) (string, error)
+	CreateShortLinkByCustomizeShortCode(string, string) (string, error)
 }
 
 var (
@@ -52,4 +53,9 @@ func GetShortLinkByLongLink(longLink string) (string, error) {
 //GetLongLinkByShortLink 短连接转长连接
 func GetLongLinkByShortLink(shortLink string) (string, error) {
 	return defaultCore.GetLongLinkByShortLink(shortLink)
+}
+
+//CreateShortLinkByCustomizeShortCode 自定义短连接转长连接
+func CreateShortLinkByCustomizeShortCode(shortCode, longLink string) (string, error) {
+	return defaultCore.CreateShortLinkByCustomizeShortCode(shortCode, longLink)
 }

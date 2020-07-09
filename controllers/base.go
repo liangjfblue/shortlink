@@ -80,6 +80,7 @@ var (
 	ErrParams          = &Errno{Code: New(100), Msg: "param error"}
 	ErrLimitMiddleware = &Errno{Code: New(101), Msg: "ip over limit"}
 
-	ErrCreateShortLink     = &Errno{Code: New(1000), Msg: "create short link error"}
-	ErrShortCodeNoLongLink = &Errno{Code: New(1001), Msg: "shortCode no longLink"}
+	ErrCreateShortLink      = &Errno{Code: New(1000), Msg: "create short link error"}
+	ErrShortCodeNoLongLink  = &Errno{Code: New(1001), Msg: "shortCode no longLink"}
+	ErrShortCodeHadLongLink = &Errno{Code: New(1002), Msg: "shortCode had longLink"}
 )

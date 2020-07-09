@@ -32,6 +32,7 @@ func New() *gin.Engine {
 	{
 		shortLinkV1.POST("", shortlink.Shorten)
 		shortLinkV1.GET("", shortlink.Info)
+		shortLinkV1.POST("/customize", shortlink.Customize)
 	}
 
 	return g

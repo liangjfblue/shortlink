@@ -80,7 +80,35 @@ db/redis:
             "longLink": "https://www.google.com/search?q=%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1&sxsrf=ALeKk01rFpwiLcx4dNPmy5Fylgy5lvHZRg:1594121387265&ei=q1wEX8_mD5vr-Qbf2ZmYCA&start=10&sa=N&ved=2ahUKEwiP6JD4hLvqAhWbdd4KHd9sBoMQ8NMDegQIDBBG&biw=1745&bih=852"
         }
     }
-    
+
+
+### 自定义短码生成短连接
+```[POST] http://172.16.7.16:9099/v1/shorten/customize```
+
+body:
+
+    {
+        "shortCode":"waini",
+        "longLink":"https://www.baidu.com"
+    }
+
+respond:
+
+    {
+        "code": 1,
+        "msg": "ok",
+        "data": "172.16.7.16:9099/sl/waini"
+    }
+
+
 ### grpc
 #### 请求生成短连接
 #### 根据短连接获取长连接信息
+
+
+## 分布式部署
+负载均衡器+n个短连接服务
+
+比如起10个短连接服务, 每个分别以0~9结尾, 负债均衡器采用轮训方式转发请求, 每次短连接服务由单点的自增1改为自增10
+
+这样, 就可以分布式部署并且保持id递增, 即使机器挂了, 可以重启机器并且设置起始生成id为当前同个数量级的或者后面数量级的数字, 继续作为发号器服务
