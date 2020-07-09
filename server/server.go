@@ -16,8 +16,14 @@ import (
 	"os/signal"
 	"runtime/debug"
 	"shortlink/config"
+	"shortlink/models/db"
+	"shortlink/models/etcdv3"
+	"shortlink/models/redis"
+	"shortlink/pkg"
 	"shortlink/rpc/proto"
 	"shortlink/rpc/service"
+	"shortlink/service/generate"
+	"strings"
 	"syscall"
 	"time"
 
@@ -26,6 +32,35 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
+
+func Init(confPath string) {
+	//init config
+	config.Init(confPath)
+
+	//init log
+	pkg.InitLog()
+
+	//init db
+	db.Init()
+
+	//init redis
+	hosts := strings.Split(config.Config().Redis.Host, ",")
+	if err := redis.Init(hosts); err != nil {
+		debug.PrintStack()
+		panic(err)
+	}
+
+	//init etcd
+	hosts = strings.Split(config.Config().Etcd.Host, ",")
+	if err := etcdv3.Init(hosts); err != nil {
+		debug.PrintStack()
+		panic(err)
+	}
+
+	//register etcd_section_generator, and set it
+	generate.RegisterGenerate("etcd_section_generator", generate.NewEtcdSectionGenerate())
+	generate.SetDefaultGenerate("etcd_section_generator")
+}
 
 func StartHttp(g *gin.Engine) {
 	go func() {

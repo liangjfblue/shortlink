@@ -3,14 +3,8 @@ package main
 import (
 	"flag"
 	"log"
-	"runtime/debug"
-	"shortlink/config"
-	"shortlink/models/db"
-	"shortlink/models/redis"
-	"shortlink/pkg"
 	"shortlink/router"
 	"shortlink/server"
-	"strings"
 
 	"github.com/sirupsen/logrus"
 )
@@ -25,22 +19,9 @@ func init() {
 }
 
 //go:generate protoc -I ./rpc/proto --go_out=plugins=grpc:./rpc/proto ./rpc/proto/api.proto
+//go:generate $ETCD_HOME/etcdctl --endpoints $ETCD_ENPOINTS put /shortLink/ '{"startNum":10, "endNum":20}' > /dev/null
 func main() {
-	//init config
-	config.Init(*conf)
-
-	//init log
-	pkg.InitLog()
-
-	//init db
-	db.Init()
-
-	//init redis
-	hosts := strings.Split(config.Config().Redis.Host, ",")
-	if err := redis.Init(hosts); err != nil {
-		debug.PrintStack()
-		panic(err)
-	}
+	server.Init(*conf)
 
 	//init router and start http server
 	server.StartHttp(router.New())

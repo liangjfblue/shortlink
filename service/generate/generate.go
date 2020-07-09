@@ -25,7 +25,7 @@ func RegisterGenerate(name string, generate IGenerate) {
 	_generateM[name] = generate
 }
 
-func GetConvert(name string) IGenerate {
+func GetGenerate(name string) IGenerate {
 	if _, ok := _generateM[name]; ok {
 		return _generateM[name]
 	}

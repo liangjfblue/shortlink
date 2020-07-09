@@ -19,6 +19,7 @@ type config struct {
 	Redis     redis     `yaml:"redis"`
 	ShortLink shortLink `yaml:"shortLink"`
 	Log       log       `yaml:"log"`
+	Etcd      etcd      `yaml:"etcd"`
 }
 
 type server struct {
@@ -48,6 +49,10 @@ type shortLink struct {
 type log struct {
 	ReportCaller bool `yaml:"reportCaller"`
 	Level        int  `yaml:"level"`
+}
+
+type etcd struct {
+	Host string `yaml:"host"`
 }
 
 var (

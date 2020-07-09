@@ -15,14 +15,24 @@ const (
 	KeyShortLinkShortCodePrefix = "shortLink:shortCode:"
 	//长连接code前缀
 	KeyShortLinkLongMd5Prefix = "shortLink:LongMd5:"
+
+	//etcd
+	//发号器的目录
+	EtcdCreateIdDir = "/shortLink/"
+
+	//分布式锁
+	DistributedLock = "/shortLink/distributed_lock"
 )
 
 var (
 	//长短连接缓存过期时间
-	ExpireTime = 3600 //3600
+	ExpireTime = 10 //3600
 
 	//短码id起始位置
 	MinShortId int64 = 1000
+
+	//短码id递增区间
+	ShortIdIncrStep int64 = 10
 )
 
 func AddRandExpire(expireTime int) int {

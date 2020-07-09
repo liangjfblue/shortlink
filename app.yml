@@ -21,3 +21,6 @@ shortLink:
 log:
   reportCaller: true
   level: 5  #0-panic 1-fatal 2-error 3-warm 4-info 5-debug 6-trace
+
+etcd:
+  host: "172.16.7.16:9002,172.16.7.16:9004,172.16.7.16:9006"

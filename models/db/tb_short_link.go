@@ -11,7 +11,8 @@ import (
 )
 
 type TBShortLink struct {
-	ShortId     uint64     `gorm:"column:short_id;not null;primary_key" json:"shortId" description:"短码id"`
+	ID          uint       `gorm:"primary_key" json:"id"`
+	ShortId     uint64     `gorm:"column:short_id;not null" json:"shortId" description:"短码id"`
 	CreatedAt   time.Time  `json:"createdAt"`
 	UpdatedAt   time.Time  `json:"updatedAt"`
 	DeletedAt   *time.Time `json:"-"`
