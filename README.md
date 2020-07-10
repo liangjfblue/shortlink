@@ -1,6 +1,8 @@
 # 短连接系统
 
-[![Build Status](https://travis-ci.org/liangjfblue/shortlink.svg?branch=master)](https://travis-ci.org/liangjfblue/shortlink) [![codecov](https://codecov.io/gh/liangjfblue/shortlink/branch/master/graph/badge.svg)](https://codecov.io/gh/liangjfblue/shortlink)
+[![Build Status](https://travis-ci.org/liangjfblue/shortlink.svg?branch=master)](https://travis-ci.org/liangjfblue/shortlink)
+[![codecov](https://codecov.io/gh/liangjfblue/shortlink/branch/master/graph/badge.svg)](https://codecov.io/gh/liangjfblue/shortlink)
+![license](https://img.shields.io/badge/license-Apache--2.0-green.svg)
 
 [我的短连接系统开源项目](https://github.com/liangjfblue/shortlink)
 
