@@ -94,5 +94,12 @@ func (g *etcdSectionGenerate) getRange(opts ...Option) error {
 	g.curNum = idSection.StartNum
 	g.endNum = idSection.EndNum
 
+	logrus.WithFields(logrus.Fields{
+		"idSection.StartNum": idSection.StartNum,
+		"idSection.EndNum":   idSection.EndNum,
+		"curNum":             g.curNum,
+		"endNum":             g.endNum,
+	}).Debug("get a new id section")
+
 	return nil
 }
