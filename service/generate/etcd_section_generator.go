@@ -58,9 +58,9 @@ func (g *etcdSectionGenerate) Create(opts ...Option) (int64, error) {
 		if err := g.getRange(opts...); err != nil {
 			return 0, nil
 		}
+	} else {
+		g.curNum++
 	}
-
-	g.curNum++
 
 	return g.curNum, nil
 }
