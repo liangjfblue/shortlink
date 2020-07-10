@@ -18,7 +18,7 @@ func Test_base62Decimal_Decode(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want interface{}
+		want int64
 	}{
 		{
 			name: "Decode",
