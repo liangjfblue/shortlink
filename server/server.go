@@ -50,13 +50,12 @@ func Init(confPath string) {
 		panic(err)
 	}
 
-	//init etcd
+	//init etcd, if use etcd_section_generator
 	hosts = strings.Split(config.Config().Etcd.Host, ",")
 	if err := etcdv3.Init(hosts); err != nil {
 		debug.PrintStack()
 		panic(err)
 	}
-
 	//register etcd_section_generator, and set it
 	generate.RegisterGenerate("etcd_section_generator", generate.NewEtcdSectionGenerate())
 	generate.SetDefaultGenerate("etcd_section_generator")
